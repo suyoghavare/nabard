@@ -18,7 +18,8 @@
     "react-native": "0.72.4",
     "react-redux": "^8.1.2",
     "redux": "^4.2.1",
-    "tailwind-rn": "^4.2.0"
+    "tailwind-rn": "^4.2.0",
+    "@react-native-community/netinfo": "9.3.10"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

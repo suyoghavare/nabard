@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import {useNetInfo} from "@react-native-community/netinfo";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 const LoginScreen = ({ navigation }) => {
+  const netInfo = useNetInfo();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -14,6 +16,8 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Text>Type: {netInfo.type} </Text>
+      <Text> {netInfo.isConnected.toString()}</Text>
       <Text style={styles.title}>Welcome to Ease-Pay App</Text>
       <TextInput
         style={styles.input}
