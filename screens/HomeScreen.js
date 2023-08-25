@@ -12,7 +12,7 @@ const HomeScreen = ({ navigation }) => {
 
   const cards = [
     { title: 'Make a Payment', icon: 'credit-card', screen: 'Payment' },
-    { title: 'Information', icon: 'info', screen: 'Information' },
+    { title: 'Transaction History', icon: 'info', screen: 'Transactions' },
     { title: 'Apply for Loans', icon: 'dollar-sign', screen: 'Loans' },
     { title: 'View Policies', icon: 'file-text', screen: 'Policies' },
   ];

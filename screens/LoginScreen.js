@@ -1,27 +1,19 @@
 import React, { useState } from 'react';
-import { useNetInfo } from "@react-native-community/netinfo";
+
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 
 const LoginScreen = ({ navigation }) => {
-  const netInfo = useNetInfo();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  
+  const [Phone, setPhoneNumber] = useState('');
+  
 
   const handleLogin = () => {
     // Implement your login logic here
     // For example, you can validate the username and password
     // and navigate to the HomeScreen upon successful login
-    if (!netInfo.isConnected) {
-      Alert.alert(
-        'No Internet Connection',
-        'Please connect to the internet to proceed.',
-        [{ text: 'OK' }],
-        { cancelable: false }
-      );
-      return;
-    }
     
-    navigation.navigate('Home');
+    
+    navigation.navigate('OTP');
   };
 
   return (
@@ -29,19 +21,13 @@ const LoginScreen = ({ navigation }) => {
       <Text style={styles.title}>Welcome to Ease-Pay App</Text>
       <TextInput
         style={styles.input}
-        placeholder="Username"
-        value={username}
-        onChangeText={setUsername}
+        placeholder="Phone Number"
+        value={Phone}
+        onChangeText={setPhoneNumber}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
+      
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Login</Text>
+        <Text style={styles.buttonText}>Generate OTP</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.registerLink}
@@ -59,7 +45,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f5f5f5',
-    padding: 50,
+    padding: 30,
   },
   title: {
     fontSize: 24,

@@ -1,19 +1,32 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { useNetInfo } from "@react-native-community/netinfo";
 import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome icons
 
 const RegisterScreen = ({ navigation }) => {
+  const netInfo = useNetInfo();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [aadharNumber, setAadharNumber] = useState('');
+  const [panCardNumber, setPanCardNumber] = useState('');
   const [dob, setDOB] = useState('');
 
+
+  
   const handleRegister = () => {
     // Implement your registration logic here
     // For example, you can validate the inputs and register the user
     // Navigate to the HomeScreen upon successful registration
+    if (!netInfo.isConnected) {
+      Alert.alert(
+        'No Internet Connection',
+        'Please connect to the internet to proceed.',
+        [{ text: 'OK' }],
+        { cancelable: false }
+      );
+      return;
+    }
     navigation.navigate('Ease-Pay');
   };
 
@@ -48,25 +61,26 @@ const RegisterScreen = ({ navigation }) => {
         />
       </View>
       <View style={styles.iconInput}>
-        <FontAwesome name="lock" size={20} color="#007BFF" />
+        <FontAwesome name="id-card" size={20} color="#007BFF" />
         <TextInput
-          style={styles.input}
-          placeholder="Password"
-          secureTextEntry
-          value={password}
-          onChangeText={setPassword}
-        />
+        style={styles.input}
+        placeholder="Aadhar Number"
+        keyboardType="numeric"
+        value={aadharNumber}
+        onChangeText={setAadharNumber}
+      />
       </View>
       <View style={styles.iconInput}>
-        <FontAwesome name="lock" size={20} color="#007BFF" />
+        <FontAwesome name="id-card" size={20} color="#007BFF" />
         <TextInput
-          style={styles.input}
-          placeholder="Confirm Password"
-          secureTextEntry
-          value={confirmPassword}
-          onChangeText={setConfirmPassword}
-        />
+        style={styles.input}
+        placeholder="Pan Card Number"
+        value={panCardNumber}
+        onChangeText={setPanCardNumber}
+      />
       </View>
+      
+      
       <View style={styles.iconInput}>
         <FontAwesome name="calendar" size={20} color="#007BFF" />
         <TextInput

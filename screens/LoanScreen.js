@@ -5,9 +5,7 @@ const LoansScreen = () => {
   const [loanAmount, setLoanAmount] = useState('');
   const [income, setIncome] = useState('');
   const [employmentType, setEmploymentType] = useState('');
-  const [aadharNumber, setAadharNumber] = useState('');
-  const [panCardNumber, setPanCardNumber] = useState('');
-
+  
   const handleApply = () => {
     // Implement your loan application logic here
     // For example, you can validate the fields and submit the application
@@ -38,19 +36,7 @@ const LoansScreen = () => {
         value={employmentType}
         onChangeText={setEmploymentType}
       />
-       <TextInput
-        style={styles.input}
-        placeholder="Aadhar Number"
-        keyboardType="numeric"
-        value={aadharNumber}
-        onChangeText={setAadharNumber}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Pan Card Number"
-        value={panCardNumber}
-        onChangeText={setPanCardNumber}
-      />
+       
       <Text style={styles.subtitle}>Loan Information</Text>
       <Text style={styles.infoText}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel lorem
