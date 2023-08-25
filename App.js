@@ -8,6 +8,8 @@ import RegisterScreen from './screens/RegisterScreen';
 import HomeScreen from './screens/HomeScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import InformationScreen from './screens/InformationScreen';
+import LoansScreen from './screens/LoanScreen';
+import ViewPoliciesScreen from './screens/PolicyScreen';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +22,8 @@ const App = () => {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Payment" component={PaymentScreen} />
         <Stack.Screen name="Information" component={InformationScreen} />
+        <Stack.Screen name="Loans" component={LoansScreen} />
+        <Stack.Screen name="Policies" component={ViewPoliciesScreen} />
 
       </Stack.Navigator>
     </NavigationContainer>

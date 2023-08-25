@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import {useNetInfo} from "@react-native-community/netinfo";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNetInfo } from "@react-native-community/netinfo";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 
 const LoginScreen = ({ navigation }) => {
   const netInfo = useNetInfo();
@@ -11,13 +11,21 @@ const LoginScreen = ({ navigation }) => {
     // Implement your login logic here
     // For example, you can validate the username and password
     // and navigate to the HomeScreen upon successful login
+    if (!netInfo.isConnected) {
+      Alert.alert(
+        'No Internet Connection',
+        'Please connect to the internet to proceed.',
+        [{ text: 'OK' }],
+        { cancelable: false }
+      );
+      return;
+    }
+    
     navigation.navigate('Home');
   };
 
   return (
     <View style={styles.container}>
-      <Text>Type: {netInfo.type} </Text>
-      <Text> {netInfo.isConnected.toString()}</Text>
       <Text style={styles.title}>Welcome to Ease-Pay App</Text>
       <TextInput
         style={styles.input}
@@ -56,7 +64,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 50,
+    marginBottom: 30,
+    color: '#007BFF',
   },
   input: {
     width: '100%',
@@ -66,6 +75,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 10,
     marginBottom: 15,
+    color: '#333',
   },
   button: {
     backgroundColor: '#007BFF',

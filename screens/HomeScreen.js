@@ -1,59 +1,110 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 
 const HomeScreen = ({ navigation }) => {
+  const isLoggedIn = true; // Set this based on your authentication status
+  
+  const handleLogout = () => {
+    // Implement logout logic here
+    navigation.navigate('Ease-Pay');
+  };
+
+  const cards = [
+    { title: 'Make a Payment', icon: 'credit-card', screen: 'Payment' },
+    { title: 'Information', icon: 'info', screen: 'Information' },
+    { title: 'Apply for Loans', icon: 'dollar-sign', screen: 'Loans' },
+    { title: 'View Policies', icon: 'file-text', screen: 'Policies' },
+  ];
+
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.title}>Welcome to Ease-Pay App</Text>
-      <View style={styles.cardContainer}>
-        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Payment')}>
-          <Text style={styles.cardTitle}>Payment</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Information')}>
-          <Text style={styles.cardTitle}>Information</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Loans')}>
-          <Text style={styles.cardTitle}>Loans</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Policies')}>
-          <Text style={styles.cardTitle}>Policies</Text>
-        </TouchableOpacity>
+    <View style={styles.container}>
+      <View style={styles.topSection}>
+        <Text style={styles.title}>Ease-Pay App</Text>
+        {isLoggedIn ? (
+          <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+            <Feather name="log-out" size={24} color="white" />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={styles.loginButton}
+            onPress={() => navigation.navigate('Ease-Pay')}
+          >
+            <Text style={styles.loginButtonText}>Ease-Pay</Text>
+          </TouchableOpacity>
+        )}
       </View>
-    </ScrollView>
+      <ScrollView contentContainerStyle={styles.cardContainer}>
+        {cards.map((card, index) => (
+          <TouchableOpacity
+            key={index}
+            style={styles.card}
+            onPress={() => navigation.navigate(card.screen)}
+          >
+            <Feather name={card.icon} size={40} color="white" />
+            <Text style={styles.cardTitle}>{card.title}</Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#fff',
     padding: 20,
+  },
+  topSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 50,
-    justifyContent: 'center',
+    textAlign: 'left',
+  },
+  loginButton: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    backgroundColor: '#007BFF',
     alignItems: 'center',
+    justifyContent: 'center',
+  },
+  loginButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  logoutButton: {
+    padding: 8,
+    borderRadius: 8,
+    backgroundColor: '#d9534f',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   cardContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    marginTop: 20,
   },
   card: {
-    width: '48%',
-    height: 150,
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    height: 100,
     backgroundColor: '#007BFF',
     borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20,
+    justifyContent: 'flex-start',
+    paddingLeft: 15,
+    marginBottom: 15,
     elevation: 5,
   },
   cardTitle: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: 'bold',
+    marginLeft: 10,
     color: 'white',
   },
 });
