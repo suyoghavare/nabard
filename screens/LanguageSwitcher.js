@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Button } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
+
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
 

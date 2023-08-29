@@ -1,9 +1,15 @@
-import React from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
+
 const HomeScreen = ({ navigation }) => {
   const isLoggedIn = true; // Set this based on your authentication status
+  
+  
+
+  
   
   const handleLogout = () => {
     // Implement logout logic here
@@ -46,6 +52,7 @@ const HomeScreen = ({ navigation }) => {
           </TouchableOpacity>
         ))}
       </ScrollView>
+      
     </View>
   );
 };
@@ -107,6 +114,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     color: 'white',
   },
+  
 });
 
 export default HomeScreen;

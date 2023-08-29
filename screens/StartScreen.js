@@ -22,6 +22,7 @@ const StartScreen = ({ navigation }) => {
         navigateToLogin();
       } else {
         console.log("Biometric authentication failed or canceled.");
+        navigateToLogin();
       }
     } catch (error) {
       console.error(error);
